@@ -7,3 +7,19 @@ Large language models (LLMs) are a powerful tool with the potential to revolutio
 
 ##Option No 2: LLM Inference Server – Using Huggingface TRL
 
+
+# Option No 1: LLM Inference Server with Custom REST APIs
+The basic implementation of an inference server requires the following components:
+- Embedded Web UI for End User
+- Provide REST APIs for external client usage
+- Ability to load interact with LLM Model
+- GPU with enough RAM to load the LLM model
+
+## Requirement
+
+- Python 3.10+ 
+- Transformers, Datasets, Accelerate, PEFT and TRL
+- gradio (used in web_demo.py)
+- uvicorn and fastapi (used in api_demo.py)
+
+- 
