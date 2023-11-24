@@ -26,7 +26,25 @@ Three tier architecture for llm inference is used to perform on premise deployme
 - docker
 - Python 3.11 
 
-Copy files from folder '01_inference_tgi_quantized' to your local GPU server. Adjust  containes needed docker compose file to create 2 docker containers. These containers can be deployed using below commands:
+Copy files from folder '01_inference_tgi_quantized' to your local GPU server. Adjust  containes needed docker compose file to create 2 docker containers.
+
+```diff
+version: "3.8"
+ 
+services:
+  tgi:
+    image: ghcr.io/huggingface/text-generation-inference
+    container_name: infer
+    ports:
+      - "8080:80" 
+    networks:
+      - tracenet
+    volumes: 
+-      - /media/ms/DATA/text-generation-inference/data:/data
++      - <YOUR LOCAL FOLDER PATH>:/data
+```
+
+ These containers can be deployed using below commands:
 
 ```bash
 docker compose build
