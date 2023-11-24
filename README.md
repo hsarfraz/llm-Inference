@@ -7,10 +7,10 @@ Large language models (LLMs) are a powerful tool with the potential to revolutio
 # Inference using Huggingface TGI
 Three tier architecture for llm inference is used to perform on premise deployment. This architecture allows greater flexibility and agility. It is assumed that on premise hosting infrastructure is behind firewalls with no outbound connectivity to internet as part of security policies. 
 
-### The three tiers consists of following:
-1: Backend llm inference server – Huggingface TGI server
-2: Web application server
-3: Front-end using web browser
+## Three Tier Architecture consists of following:
+1. Backend llm inference server (Huggingface TGI server)
+2. Web application server
+3. Front-end using web browser
 
 ## Deliverables
 - Web Interface to allow interaction with llm
@@ -55,6 +55,7 @@ services:
               capabilities: [gpu]
 ```
 
+## Deploy 
 Once the changes have been made to the [`docker-compose.yml`](./01_inference_tgi_quantized/docker-compose.yml) file to reflect your local environment. The containers can be build and deployed using below commands:
 
 ```bash
