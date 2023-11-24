@@ -1,0 +1,30 @@
+version: "3.8"
+ 
+services:
+  tgi:
+    image: ghcr.io/huggingface/text-generation-inference
+    container_name: infer
+    ports:
+      - "8080:80" 
+    networks:
+      - tracenet
+    volumes: 
+      - /media/ms/DATA/text-generation-inference/data:/data
+      - /tmp:/tmp      
+   #  command: text-generation-launcher --shm-size 1g                
+    environment:
+      - MODEL_ID=/data/CodeLlama-7B-GPTQ
+      - NUM_SHARD=1
+      - QUANTIZE=gptq
+      - SHM-SIZE=1g
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+networks:
+   tracenet: 
+volumes:
+   db:
