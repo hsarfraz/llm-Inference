@@ -3,15 +3,12 @@ Setting up Llama LLM inference On-Premise Environment
 
 Large language models (LLMs) are a powerful tool with the potential to revolutionize a wide range of industries. However, deploying and managing LLMs can be a complex and challenging task. This repo provides ready to use implemention details, ready built containers to perform LLMs in an on-premise environment. 
 
-## Inference using Huggingface TGI
-## Custom Inference Server with REST APIs
-
 
 # Inference using Huggingface TGI
 Three tier architecture for llm inference is used to perform on premise deployment. This architecture allows greater flexibility and agility. It is assumed that on premise hosting infrastructure is behind firewalls with no outbound connectivity to internet as part of security policies. 
 
 ### The three tiers consists of following:
-1: Backend llm inference server – huggingface TGI server
+1: Backend llm inference server – Huggingface TGI server
 2: Web application server
 3: Front-end using web browser
 
@@ -26,7 +23,7 @@ Three tier architecture for llm inference is used to perform on premise deployme
 - docker
 - Python 3.11 
 
-Copy files from folder '01_inference_tgi_quantized' to your local GPU server. Adjust  containes needed docker compose file to create 2 docker containers.
+Copy files from folder '01_inference_tgi_quantized' to your local Linux GPU server. Adjust Docker compose file [`docker-compose.yml`](./01_inference_tgi_quantized/docker-compose.yml) to local Linux environment as highlighted below:
 
 ```diff
 version: "3.8"
@@ -42,9 +39,23 @@ services:
     volumes: 
 -      - /media/ms/DATA/text-generation-inference/data:/data
 +      - <YOUR LOCAL FOLDER PATH>:/data
+      - /tmp:/tmp             
+    environment:
+-      - MODEL_ID=/data/CodeLlama-7B-GPTQ
++      - MODEL_ID=<YOUR QUANTIZED GPTQ MODEL>
+      - NUM_SHARD=1
+      - QUANTIZE=gptq
+      - SHM-SIZE=1g
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
 ```
 
- These containers can be deployed using below commands:
+Once the changes have been made to the [`docker-compose.yml`](./01_inference_tgi_quantized/docker-compose.yml) file to reflect your local environment. The containers can be build and deployed using below commands:
 
 ```bash
 docker compose build

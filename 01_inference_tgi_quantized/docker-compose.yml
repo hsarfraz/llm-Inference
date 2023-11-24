@@ -10,8 +10,7 @@ services:
       - tracenet
     volumes: 
       - /media/ms/DATA/text-generation-inference/data:/data
-      - /tmp:/tmp      
-   #  command: text-generation-launcher --shm-size 1g                
+      - /tmp:/tmp             
     environment:
       - MODEL_ID=/data/CodeLlama-7B-GPTQ
       - NUM_SHARD=1
