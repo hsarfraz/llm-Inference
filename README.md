@@ -3,14 +3,17 @@ Setting up Llama LLM inference On-Premise Environment
 
 Large language models (LLMs) are a powerful tool with the potential to revolutionize a wide range of industries. However, deploying and managing LLMs can be a complex and challenging task. This repo provides ready to use implemention details, ready built containers to perform LLMs in an on-premise environment. 
 
-
-# Inference using Huggingface TGI
 Three tier architecture for llm inference is used to perform on premise deployment. This architecture allows greater flexibility and agility. It is assumed that on premise hosting infrastructure is behind firewalls with no outbound connectivity to internet as part of security policies. 
 
 ## Three Tier Architecture consists of following:
-1. Backend llm inference server (Huggingface TGI server)
+1. Backend llm inference server 
 2. Web application server
 3. Front-end using web browser
+
+# Inference using Hugging Face TGI
+This section provides details on deployment of three tier llm inference architecture using Hugging Face TGI on local Linux environment. 
+
+Comprehensive list of models that are supported by [TGI](https://huggingface.co/docs/text-generation-inference/supported_models) is provided by Hugging Face.
 
 ## Deliverables
 - Web Interface to allow interaction with llm
@@ -20,8 +23,10 @@ Three tier architecture for llm inference is used to perform on premise deployme
   - Falcon 7B
 
 ## Requirement
-- docker
+- Linux server with GPU's and CUDA Support
+- Docker 
 - Python 3.11 
+- Gradio for UI
 
 Copy files from folder '01_inference_tgi_quantized' to your local Linux GPU server. Adjust Docker compose file [`docker-compose.yml`](./01_inference_tgi_quantized/docker-compose.yml) to local Linux environment as highlighted below:
 
@@ -53,6 +58,20 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+  web:
+      build:
+        context: ./webserver
+      container_name: webserve
+      depends_on:
+        - "tgi"        
+      ports:
+        - "80:8003"   
+      networks:
+        - tracenet              
+      volumes:
+          - .:/app              
+networks:
+   tracenet:               
 ```
 
 ## Deploy 
@@ -63,19 +82,35 @@ docker compose build
 docker compose up -d
 ```
 
+After deployment TGI REST API are accessible via 
+```bash
+http://<HOST IP ADDRESS>:8080/
+```
+Gradio web UI to chat with llm is made accessible via
+```bash
+http://<HOST IP ADDRESS>/
+```
 
-# Custom Inference Server with REST APIs
-The basic implementation of an inference server requires the following components:
-- Embedded Web UI for End User
-- Provide REST APIs for external client usage
-- Ability to load interact with LLM Model
-- GPU with enough RAM to load the LLM model
+
+
+# Tiny llm Inference Server
+The tiny llm inference server is a simplified implementation to host llm on-premise. It is designed for small scale inference with max serving for 1-5 users. Tiny llm inference server is based on a single Docker container that three capablities: 
+1. llm Inference
+2. Embedded Web UI for End User using Gradio
+3. REST APIs for integration with llm
+
+## Deliverables
+- Web Interface to allow interaction with llm
+- Deployment of following models:
+  - Code LLama 7B, 13B 
+  - LLama 7B
+  - Falcon 7B
 
 ## Requirement
-
-- Python 3.10+ 
-- Transformers, Datasets, Accelerate, PEFT and TRL
-- gradio (used in web_demo.py)
+- Linux server with single GPU and CUDA Support
+- Docker 
+- Python 3.11 
+- Gradio for UI
 - uvicorn and fastapi (used in api_demo.py)
 
 - 

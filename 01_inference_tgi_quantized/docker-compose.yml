@@ -9,10 +9,10 @@ services:
     networks:
       - tracenet
     volumes: 
-      - /media/ms/DATA/text-generation-inference/data:/data
+      - /media/ms/DATA/models:/data
       - /tmp:/tmp             
     environment:
-      - MODEL_ID=/data/CodeLlama-7B-GPTQ
+      - MODEL_ID=/data/Llama-2-7B-32K-Instruct-GPTQ
       - NUM_SHARD=1
       - QUANTIZE=gptq
       - SHM-SIZE=1g
@@ -23,7 +23,17 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+  web:
+      build:
+        context: ./webserver
+      container_name: webserve
+      depends_on:
+        - "tgi"        
+      ports:
+        - "80:8003"   
+      networks:
+        - tracenet              
+      volumes:
+          - .:/app              
 networks:
    tracenet: 
-volumes:
-   db:
