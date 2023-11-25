@@ -10,6 +10,8 @@ Three tier architecture for llm inference is used to perform on premise deployme
 2. Web application server
 3. Front-end using web browser
 
+![image](https://github.com/hsarfraz/llm-Inference/assets/127702575/d33e7c08-ef50-4ced-b0d1-e35568bd7f6d)
+
 # Inference using Hugging Face TGI
 This section provides details on deployment of three tier llm inference architecture using Hugging Face TGI on local Linux environment. 
 
@@ -93,8 +95,8 @@ http://<HOST IP ADDRESS>/
 
 
 
-# Tiny llm Inference Server
-The tiny llm inference server is a simplified implementation to host llm on-premise. It is designed for small scale inference with max serving for 1-5 users. Tiny llm inference server is based on a single Docker container that three capablities: 
+# Inference using Tiny llm Server
+The tiny llm inference server is a simplified implementation to host llm on-premise. It is designed for small scale inference deployments with max serving capacity for 1-5 users. Tiny llm inference server is based on a single Docker container that provides three key capablities: 
 1. llm Inference
 2. Embedded Web UI for End User using Gradio
 3. REST APIs for integration with llm
@@ -113,4 +115,4 @@ The tiny llm inference server is a simplified implementation to host llm on-prem
 - Gradio for UI
 - uvicorn and fastapi (used in api_demo.py)
 
-- 
+
