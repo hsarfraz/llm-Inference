@@ -20,9 +20,9 @@ Comprehensive list of models that are supported by [TGI](https://huggingface.co/
 ## Deliverables
 - Web Interface to allow interaction with llm
 - Deployment of following models:
-  - Code LLama 7B, 13B 
-  - LLama 7B
-  - Falcon 7B
+  - Code LLama 
+  - LLama 2 
+  - Falcon 
 
 ## Requirement
 - Linux server with GPU's and CUDA Support
@@ -45,11 +45,11 @@ services:
       - tracenet
     volumes: 
 -      - /media/ms/DATA/text-generation-inference/data:/data
-+      - <YOUR LOCAL FOLDER PATH>:/data
++      - <LOCAL FOLDER PATH>:/data
       - /tmp:/tmp             
     environment:
 -      - MODEL_ID=/data/CodeLlama-7B-GPTQ
-+      - MODEL_ID=<YOUR QUANTIZED GPTQ MODEL>
++      - MODEL_ID=<QUANTIZED GPTQ MODEL>
       - NUM_SHARD=1
       - QUANTIZE=gptq
       - SHM-SIZE=1g
@@ -96,23 +96,77 @@ http://<HOST IP ADDRESS>/
 
 
 # Inference using Tiny llm Server
-The tiny llm inference server is a simplified implementation to host llm on-premise. It is designed for small scale inference deployments with max serving capacity for 1-5 users. Tiny llm inference server is based on a single Docker container that provides three key capablities: 
+The tiny llm inference server is a simplified implementation to host llm modles on-premise. It is designed for small scale inference deployments with max serving capacity for 1-5 users. Tiny llm inference server is based on a single Docker container that provides following key capablities: 
+
 1. llm Inference
-2. Embedded Web UI for End User using Gradio
-3. REST APIs for integration with llm
+2. Ability to host multiple models on GPU
+3. Split model layers between GPU and host RAM
+4. Embedded Web UI for End User using Gradio
+5. REST APIs for integration with llm
+6. Support for quantized models
 
 ## Deliverables
 - Web Interface to allow interaction with llm
-- Deployment of following models:
-  - Code LLama 7B, 13B 
-  - LLama 7B
-  - Falcon 7B
+
+## Supported Models
+
+| Models              | Model Type    | CUDA | 
+| :------------------ | ------------- | :--: | 
+| GPT-2               | `gpt2`        |      | 
+| GPT-J, GPT4All-J    | `gptj`        |      | 
+| GPT-NeoX, StableLM  | `gpt_neox`    |      | 
+| Falcon              | `falcon`      |  ✅  |  
+| LLaMA, LLaMA 2      | `llama`       |  ✅  |
+| Code LLaMA          | `llama`       |  ✅  |
+| MPT                 | `mpt`         |  ✅  |
+| StarCoder, StarChat | `gpt_bigcode` |  ✅  |
+| Dolly V2            | `dolly-v2`    |      |
+| Replit              | `replit`      |      |
 
 ## Requirement
 - Linux server with single GPU and CUDA Support
 - Docker 
 - Python 3.11 
 - Gradio for UI
-- uvicorn and fastapi (used in api_demo.py)
+- uvicorn and fastapi 
+
+```diff
+version: "3.8"
+ 
+services:
+  webtiny1:
+    build:
+      context: ./webserver
+    container_name: webtiny1 
+    volumes: 
+-      - /media/ms/DATA/models:/data
++      - <LOCAL FOLDER PATH>:/data
+      - /tmp:/tmp     
+    environment:
+      - MODEL_INDEX=0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]                  
+    ports:
+      - "80:8000"
+    networks:
+      - tinynet              
+networks:
+  tinynet: 
 
 
+```
+
+## Chat UI - Tiny llm Server
+
+Gradio web UI to chat with llm is made accessible via
+```bash
+http://<HOST IP ADDRESS>/
+```
+Given below is a screen shot of the Chat UI working with tiny llm server
+
+![image](https://github.com/hsarfraz/llm-Inference/assets/127702575/2ea748ba-f190-40ec-abd7-f6b5d386fc0a)

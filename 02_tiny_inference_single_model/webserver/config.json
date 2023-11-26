@@ -1,0 +1,15 @@
+{
+    "loader": [
+        {
+            "model_file": "/data/Llama2/llama-2-7b-32k-instruct.Q8_0.gguf",
+            "model_type": "llama",
+            "gpu_layers": 30
+        },
+        {
+            "model_file": "/data/Llama2/llama-2-7b-32k-instruct.Q8_0.gguf",
+            "model_type": "llama",
+            "gpu_layers": 30
+        }
+
+    ]
+}
