@@ -5,7 +5,7 @@ Large language models (LLMs) are a powerful tool with the potential to revolutio
 
 The focus is primarily on runtime inference, it does not cater for fine-tuning and training of llm. The model serving includes original model and/or quantized versions. 
 
-- [Inference using Hugging Face TGI & Web Chat Interface](#Inference-using-Hugging-Face-TGI-&-Web-Chat-Interface)
+- [Inference using Hugging Face TGI & Web Chat Interface](#inference-using-hugging-face-tgi-&-web-chat-interface)
 
 - [Inference using Tiny LLM Server & Web Chat Interface](#Inference-using-Tiny-llm-Server-&-Web-Chat-Interface)
 
@@ -26,6 +26,7 @@ Comprehensive list of models that are supported by [TGI](https://huggingface.co/
 
 ## Deliverables
 - Web Interface to allow interaction with llm
+- Inference server configuration and setup 
 - Deployment of following models:
   - Code LLama 
   - LLama 2 
@@ -102,8 +103,8 @@ http://<HOST IP ADDRESS>/
 
 
 
-# Inference using Tiny llm Server
-The tiny llm inference server is a simplified implementation to host llm modles on-premise. It is designed for small scale inference deployments with max serving capacity for 1-5 users. Tiny llm inference server is based on a single Docker container that provides following key capablities: 
+# Inference using Tiny llm Server & Web Chat Interface
+The tiny llm inference server is a simplified implementation to host llm modles on-premise. It is designed for small scale inference deployments with max serving capacity for 1-5 users. Tiny llm inference server is based on a single Docker container that provides following key capabilities: 
 
 1. llm Inference
 2. Ability to host multiple models on GPU
@@ -114,6 +115,7 @@ The tiny llm inference server is a simplified implementation to host llm modles 
 
 ## Deliverables
 - Web Interface to allow interaction with llm
+- Inference server configuration and setup 
 
 ## Supported Models
 
@@ -167,8 +169,17 @@ networks:
 
 
 ```
+## Deploy 
+Once the changes have been made to the [`docker-compose.yml`](./02_tiny_inference_single_model/docker-compose.yml) file to reflect your local environment. The containers can be build and deployed using below commands:
 
-Once the contantainers are up and running, below command can be used to verify
+```bash
+docker compose build
+docker compose up -d
+```
+Given below is typical output upon successful running of tiny inference server
+![image](https://github.com/hsarfraz/llm-Inference/assets/127702575/97009884-9628-41f9-912f-ff662c7d1645)
+
+Also, below docker ps command can also be used to verify if tiny inference server is up and running
 ```bash
 docker ps 
 ```
