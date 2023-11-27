@@ -1,7 +1,7 @@
 # Large Language Models (LLMs) Inference
-Setting up LLM inference services on-premise environment.
+Setting up LLM inference services within data centers and/or on-premise environments.
 
-Large language models (LLMs) are a powerful tool with the potential to revolutionize a wide range of industries. However, deploying and managing LLMs on-premise can be a complex and challenging task. This repo provides guidance for end-to-end implementation of llm on-premise. This includes llm inference server and associated web interface to chat with llm models. The implementation is based on docker containers to perform inference and web server to host web interface. 
+Large language models (LLMs) are a powerful tool with the potential to revolutionize a wide range of industries. However, deploying and managing LLMs on-premise can be a complex and challenging task. This repo provides ready to deploy configuration and python code for setting up of llm inference servers. This includes REST API and web interface to chat with llm models. The implementation is based on docker containers. 
 
 The focus is primarily on runtime inference, it does not cater for fine-tuning and training of llm. The model serving includes original model and/or quantized versions. 
 
