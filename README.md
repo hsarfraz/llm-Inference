@@ -1,18 +1,25 @@
-# Large language models (LLMs) Inference
-Setting up Llama LLM inference On-Premise Environment
+# Large Language Models (LLMs) Inference
+Setting up LLM inference services on-premise environment.
 
-Large language models (LLMs) are a powerful tool with the potential to revolutionize a wide range of industries. However, deploying and managing LLMs can be a complex and challenging task. This repo provides ready to use implemention details, ready built containers to perform LLMs in an on-premise environment. 
+Large language models (LLMs) are a powerful tool with the potential to revolutionize a wide range of industries. However, deploying and managing LLMs on-premise can be a complex and challenging task. This repo provides guidance for end-to-end implementation of llm on-premise. This includes llm inference server and associated web interface to chat with llm models. The implementation is based on docker containers to perform inference and web server to host web interface. 
 
+The focus is primarily on runtime inference, it does not cater for fine-tuning and training of llm. The model serving includes original model and/or quantized versions. 
+
+- [Inference using Hugging Face TGI & Web Chat Interface](#Inference-using-Hugging-Face-TGI-&-Web-Chat-Interface)
+
+- [Inference using Tiny LLM Server & Web Chat Interface](#Inference-using-Tiny-llm-Server-&-Web-Chat-Interface)
+
+## Three Tier Architecture - LLM Inference:
 Three tier architecture for llm inference is used to perform on premise deployment. This architecture allows greater flexibility and agility. It is assumed that on premise hosting infrastructure is behind firewalls with no outbound connectivity to internet as part of security policies. 
 
-## Three Tier Architecture consists of following:
+
 1. Backend llm inference server 
 2. Web application server
 3. Front-end using web browser
 
 ![image](https://github.com/hsarfraz/llm-Inference/assets/127702575/d33e7c08-ef50-4ced-b0d1-e35568bd7f6d)
 
-# Inference using Hugging Face TGI
+# Inference using Hugging Face TGI & Web Chat Interface
 This section provides details on deployment of three tier llm inference architecture using Hugging Face TGI on local Linux environment. 
 
 Comprehensive list of models that are supported by [TGI](https://huggingface.co/docs/text-generation-inference/supported_models) is provided by Hugging Face.
@@ -161,6 +168,11 @@ networks:
 
 ```
 
+Once the contantainers are up and running, below command can be used to verify
+```bash
+docker ps 
+```
+![image](https://github.com/hsarfraz/llm-Inference/assets/127702575/9643a105-b7a8-49d6-bcd1-90827719e8cb)
 ## Chat UI - Tiny llm Server
 
 Gradio web UI to chat with llm is made accessible via
