@@ -7,7 +7,7 @@ The focus is primarily on runtime inference, it does not cater for fine-tuning a
 
 - [Inference using Hugging Face TGI & Web Chat Interface](#inference-using-hugging-face-tgi-&-web-chat-interface)
 
-- [Inference using Tiny LLM Server & Web Chat Interface](llm-Inference/02_tiny_inference_single_model)
+- [Inference using Tiny LLM Server & Web Chat Interface](02_tiny_inference_single_model)
 
 ## Three Tier Architecture - LLM Inference:
 Three tier architecture for llm inference is used to perform on premise deployment. This architecture allows greater flexibility and agility. It is assumed that on premise hosting infrastructure is behind firewalls with no outbound connectivity to internet as part of security policies. 
