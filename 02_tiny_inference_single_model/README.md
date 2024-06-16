@@ -1,6 +1,6 @@
 
 # Inference using Tiny llm Server & Web Chat Interface
-The tiny llm inference server is a simplified implementation to host llm modles on-premise. It is designed for small scale inference deployments with max serving capacity for 1-5 users. Tiny llm inference server is based on a single Docker container that provides following key capabilities: 
+The tiny LLM inference server is a simplified implementation to host LLM models on-premise. It is designed for small scale inference deployments with max serving capacity for 1-5 users. Tiny llm inference server is based on a single Docker container that provides following key capabilities: 
 
 1. llm Inference
 2. Ability to host multiple models on GPU
