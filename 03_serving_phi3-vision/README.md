@@ -57,15 +57,15 @@ Once the changes have been made to the [`docker-compose.yml`](./02_tiny_inferenc
 docker compose build
 docker compose up -d
 ```
-Given below is typical output upon successful running of tiny inference server
-![image](https://github.com/hsarfraz/llm-Inference/assets/127702575/97009884-9628-41f9-912f-ff662c7d1645)
+Given below is typical output upon successful running of phi3-vision inference server
+![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/phi3_container_running.png)
 
 Also, below docker ps command can also be used to verify if tiny inference server is up and running
 ```bash
 docker ps 
 ```
 ```bash
-http://<HOST IP ADDRESS>/
+http://<HOST IP ADDRESS>:5000/
 ```
 Given below is a screen shot of the Chat UI working with tiny llm server
 
