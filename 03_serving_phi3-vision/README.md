@@ -70,8 +70,5 @@ docker ps
 ```bash
 http://<HOST IP ADDRESS>:5000/
 ```
-Given below is a screen shot of the Chat UI working with tiny llm server
-
-![image](https://github.com/hsarfraz/llm-Inference/assets/127702575/2ea748ba-f190-40ec-abd7-f6b5d386fc0a)
 
 Contact me on freelancing web sites for assistance https://www.freelancer.com/u/hsarfraz76 or https://www.upwork.com/freelancers/~0178ad46e2372c8fe5 
