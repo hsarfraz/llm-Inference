@@ -24,13 +24,30 @@ It provides a simple REST based interface to allow utlization of the model. Infe
 ## Requirement
 - Linux server with GPU and CUDA Support
 - Docker 
-- Python 3.11 
+- Pytorch, Transformers, flash-attn
 - uvicorn and fastapi 
 
 ```diff
 version: "3.8"
- 
 services:
+  phiserv:
+    build:
+      context: ./app
+    container_name: phiserv
+    hostname: phiserv
+    environment:
+      MODEL: microsoft/Phi-3-vision-128k-instruct
+    ports:
+      - "5000:5000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]  
+    volumes:
+      - ./model/:/root/.cache/huggingface  
 
 ```
 ## Deploy 

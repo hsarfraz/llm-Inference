@@ -1,0 +1,16 @@
+torch
+torchvision
+transformers
+pillow
+flask[async]
+flask-jwt-extended
+flask-cors
+python-dotenv
+accelerate
+bitsandbytes
+opencv-python==4.8.0.74
+numpy
+wheel
+packaging
+flash-attn
+

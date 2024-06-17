@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  phiserv:
+    build:
+      context: ./app
+    container_name: phiserv
+    hostname: phiserv
+    environment:
+      MODEL: microsoft/Phi-3-vision-128k-instruct
+    ports:
+      - "5000:5000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]  
+    volumes:
+      - ./model/:/root/.cache/huggingface  
+
+
