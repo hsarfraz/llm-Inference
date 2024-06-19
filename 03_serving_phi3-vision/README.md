@@ -70,5 +70,11 @@ docker ps
 ```bash
 http://<HOST IP ADDRESS>:5000/
 ```
+## Usage 
+To perform OCR using the Phi3-vision model, the server has REST end point /ocr. This end point handles OCR of a single file using default prompt or custom prompt. The end point will return text of the uploaded image. Given below are few examples of calling the /ocr end point using curl. 
+
+```bash
+curl -F "file=@<replace_with_image_filename>.png" http://<host ip address>:5000/ocr
+```
 
 Contact me on freelancing web sites for assistance https://www.freelancer.com/u/hsarfraz76 or https://www.upwork.com/freelancers/~0178ad46e2372c8fe5 
