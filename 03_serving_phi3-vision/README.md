@@ -86,9 +86,6 @@ To perform Optical Character Recognition (OCR) using the Phi3-vision model, use 
 curl -F "file=@<replace_with_image_filename>.png" http://<host ip address>:5000/ocr
 ```
 
-
-
-
 # Extracting Elements from Court Case Document
 Phi3-vision's exceptional capabilities in optical character recognition (OCR) have been consistently demonstrated through its impressive performance on simple documents. Not only can it accurately perform OCR tasks, but it also excels at named-entity recognition, allowing users to pinpoint specific entities mentioned within the text. Moreover, Phi3-vision returns its findings in JSON format, making it an intuitive and user-friendly solution for data extraction.
 
@@ -101,7 +98,7 @@ As we analyze the results in JSON format, we'll gain insights into specific elem
 ## phi3-vision prompt to extract case name and court 
 Curl command with custom prompt to extract court case name and associated court
 ```bash
-curl --form file=@82491256.png --form prompt="OCR the text of the image. Extract the text of the following fields and put it in a JSON format: 'CASE NAME','COURT'" http://<host ip address>:5001/ocr
+curl --form file=@82491256.png --form prompt="OCR the text of the image. Extract the text of the following fields and put it in a JSON format: 'CASE NAME','COURT'" http://<host ip address>:5000/ocr
 ```
 The output of curl command is given below:
 ![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/output_court_case_name_json.png)
@@ -109,7 +106,7 @@ The output of curl command is given below:
 ## phi3-vision prompt to extract case name, date filed and entities 
 Curl command with custom prompt to extract court case name and associated court
 ```bash
-curl --form file=@82491256.png --form prompt="OCR the text of the image. Extract the text as JSON of the following fields and put it in a formatted JSON: 'CASE NAME','DATE FILED', LORILLARD ENTITIES" http://192.168.100.38:5001/ocr
+curl --form file=@82491256.png --form prompt="OCR the text of the image. Extract the text as JSON of the following fields and put it in a formatted JSON: 'CASE NAME','DATE FILED', LORILLARD ENTITIES" http://192.168.100.38:5000/ocr
 ```
 
 ![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/output_court_case_attrib_ex2.png)
@@ -118,7 +115,7 @@ While the model is able to extract the needed attributes and accurately in a JSO
 
 Let's measure performance of Phi3-vision for the same prompt using curl's built-in timing measurement feature by simply appending output to a text file using -o option
 ```bash
-curl --form file=@82491256.png --form prompt="OCR the text of the image. Extract the text as JSON of the following fields and put it in a formatted JSON: 'CASE NAME','DATE FILED', LORILLARD ENTITIES" http://192.168.100.38:5001/ocr -o output.json
+curl --form file=@82491256.png --form prompt="OCR the text of the image. Extract the text as JSON of the following fields and put it in a formatted JSON: 'CASE NAME','DATE FILED', LORILLARD ENTITIES" http://192.168.100.38:5000/ocr -o output.json
 ```
 It takes around three seconds to perform OCR, named-entity recognition and return results in a JSON text file
 
