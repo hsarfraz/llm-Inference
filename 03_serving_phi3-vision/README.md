@@ -1,12 +1,15 @@
 
 # Inference using Microsoft phi3-vision model
-Microsoft Phi3 vision language model is latest state-of-the art language model. This repo provides implementation of python/flask based web server to host model on premise for runtime inference. It provides examples to perform OCR and other functions using command line utilities like curl. The tiny Phi3-vision inference server is a simplified implementation to host model on premise. It is designed for small scale inference deployments with max serving capacity for 1-5 users. 
+Microsoft Phi3 vision language model, the latest state-of-the-art AI technology for natural language processing. This model enables organizations to unlock the full potential of their unstructured data by providing insights and actionable intelligence. This containerized implementation of a Python/Flask-based web server allows you to host the Phi3 vision model on-premise, streamlining runtime inference and enabling seamless integration with your existing infrastructure.
 
-It provides a simple REST based interface to allow utilization of the model. Inference server is based on a single Docker container that provides following key capabilities: 
+This simplified inference server is specifically designed for small-scale deployments, supporting up to 1-5 users, making it an ideal solution for organizations looking to implement language processing capabilities without significant upfront investments. With this innovative technology, you can unlock the power of Phi3 vision and start driving business value through enhanced decision-making, improved customer engagement, and more.
 
-1. Phi-3 model Inference
-2. REST APIs for integration with llm
-3. Support for quantized models
+The Phi3-vision language model inference server offers a straightforward, REST-based interface for seamless utilization of the model. It is comprised of a single Docker container that delivers three essential capabilities:
+
+1. Phi-3 Model Inference: Leverage the power of the Phi3 vision model to unlock insights and drive decision-making.
+2. REST APIs for Integration: Seamlessly integrate your Phi3 vision model with other systems through a robust REST API framework, enabling a range of applications and use cases.
+3. Quantized Model Support: Take advantage of optimized performance by supporting quantized models, perfect for resource-constrained environments.
+
 
 ## Deliverables
 - REST Interface to allow interaction with Phi-3 model
