@@ -85,7 +85,7 @@ Phi3-vision provides exceptional results in performing OCR of simple documents. 
 
 ![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/82491256.png)
 
-## Prompt to extract case name and court 
+## phi3-vision prompt to extract case name and court 
 Curl command with custom prompt to extract court case name and associated court
 ```bash
 curl --form file=@82491256.png --form prompt="OCR the text of the image. Extract the text of the following fields and put it in a JSON format: 'CASE NAME','COURT'" http://<host ip address>:5001/ocr
@@ -93,7 +93,7 @@ curl --form file=@82491256.png --form prompt="OCR the text of the image. Extract
 The output of curl command is given below:
 ![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/output_court_case_name_json.png)
 
-## Prompt to extract case name, date filed and entities 
+## phi3-vision prompt to extract case name, date filed and entities 
 Curl command with custom prompt to extract court case name and associated court
 ```bash
 curl --form file=@82491256.png --form prompt="OCR the text of the image. Extract the text as JSON of the following fields and put it in a formatted JSON: 'CASE NAME','DATE FILED', LORILLARD ENTITIES" http://192.168.100.38:5001/ocr
@@ -107,12 +107,24 @@ Let's measure performance of Phi3-vision for the same prompt using curl's built-
 ```bash
 curl --form file=@82491256.png --form prompt="OCR the text of the image. Extract the text as JSON of the following fields and put it in a formatted JSON: 'CASE NAME','DATE FILED', LORILLARD ENTITIES" http://192.168.100.38:5001/ocr -o output.json
 ```
-It takes around three seconds to perform OCR and return results in a JSON text file
+It takes around three seconds to perform OCR, named-entity recognition and return results in a JSON text file
 
 ![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/output_court_case_attrib_ex2_time.png)
 
 The contents of the output.json file are shown below:
 
 ![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/output_court_case_attrib_ex2_json.png)
+
+## phi3-vision hallucinations and unable to parse vertical/slanted text 
+So far we have extracted particular fields from the court form document. Now we will try to perform full OCR of the document and see the results. Use below curl command without specifying any custom prompt, in this case the REST service will use default prompt to perform OCR. 
+
+```bash
+curl --form file=@82491256.png http://192.168.100.38:5000/ocr
+```
+The results of the curl command are displayed in below image. In this case while phi3-vision model is able to accurately perform ocr of the text, it is unable to ocr vertical and slanted text, resulting in hallucinations by providing invalid results. 
+
+![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/output_court_form_full_ocr.png)
+
+
 
 Contact me on freelancing web sites for assistance https://www.freelancer.com/u/hsarfraz76 or https://www.upwork.com/freelancers/~0178ad46e2372c8fe5 
