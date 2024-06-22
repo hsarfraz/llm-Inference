@@ -51,7 +51,7 @@ services:
 
 ```
 ## Deploy 
-After making the necessary updates to the [`docker-compose.yml`](./app/docker-compose.yml) file to accurately reflect your local development environment, you're now ready to build and deploy your containers. To do so, follow these steps:
+After making the necessary updates to the [`docker-compose.yml`](./docker-compose.yml) file to accurately reflect your local development environment, you're now ready to build and deploy your containers. To do so, follow these steps:
 
 1. Run docker-compose build to rebuild your containers using the updated configuration.
 2. Next, execute docker-compose up -d to start your containers in detached mode, allowing them to run in the background.
