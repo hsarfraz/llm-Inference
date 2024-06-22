@@ -53,8 +53,8 @@ services:
 ## Deploy 
 After making the necessary updates to the [`docker-compose.yml`] (./02_tiny_inference_single_model/docker-compose.yml) file to accurately reflect your local development environment, you're now ready to build and deploy your containers. To do so, follow these steps:
 
-1: Run docker-compose build to rebuild your containers using the updated configuration.
-2: Next, execute docker-compose up -d to start your containers in detached mode, allowing them to run in the background.
+1. Run docker-compose build to rebuild your containers using the updated configuration.
+2. Next, execute docker-compose up -d to start your containers in detached mode, allowing them to run in the background.
 
 By following these commands, you'll have successfully deployed your containers and be ready to start using phi3-vision via REST web services.
 
@@ -87,13 +87,13 @@ curl -F "file=@<replace_with_image_filename>.png" http://<host ip address>:5000/
 
 
 # Extracting Elements from Court Case Document
-Phi3-vision's exceptional capabilities in optical character recognition (OCR) have been consistently demonstrated through its impressive performance on simple documents.Not only can it accurately perform OCR tasks, but it also excels at named-entity recognition, allowing users to pinpoint specific entities mentioned within the text. Moreover, Phi3-vision returns its findings in JSON format, making it an intuitive and user-friendly solution for data extraction.
+Phi3-vision's exceptional capabilities in optical character recognition (OCR) have been consistently demonstrated through its impressive performance on simple documents. Not only can it accurately perform OCR tasks, but it also excels at named-entity recognition, allowing users to pinpoint specific entities mentioned within the text. Moreover, Phi3-vision returns its findings in JSON format, making it an intuitive and user-friendly solution for data extraction.
 
 To illustrate the model's capabilities, let's put it to work on a sample document from the funds dataset. By using a court case form as our test subject, we can demonstrate how Phi3-vision can extract valuable information from a scanned document with ease. Using its advanced OCR capabilities, the tool will quickly and accurately identify the text within the image, allowing us to tap into the wealth of data contained within.
 
-As we analyze the results in JSON format, we'll gain insights into specific elements extracted from the scanned document, such as dates, names, and other relevant information. This powerful combination of OCR and named-entity recognition enables users to unlock hidden value from even the most complex documents, making Phi3-vision an indispensable tool for anyone working with large datasets
-
 ![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/82491256.png)
+
+As we analyze the results in JSON format, we'll gain insights into specific elements extracted from the scanned document, such as dates, names, and other relevant information. This powerful combination of OCR and named-entity recognition enables users to unlock hidden value from even the most complex documents, making Phi3-vision an indispensable tool for anyone working with large datasets.
 
 ## phi3-vision prompt to extract case name and court 
 Curl command with custom prompt to extract court case name and associated court
