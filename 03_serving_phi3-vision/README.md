@@ -1,8 +1,8 @@
 
 # Inference using Microsoft phi3-vision model
-Microsoft Phi3 vision language model is latest state-of-the art langauge model. This repo provides implementation of python/flask based web server to host model on premise for runtime inference. It provides examples to perform OCR and other functions using command line utlities like curl. The tiny Phi3-vision inference server is a simplified implementation to host model on-premise. It is designed for small scale inference deployments with max serving capacity for 1-5 users. 
+Microsoft Phi3 vision language model is latest state-of-the art language model. This repo provides implementation of python/flask based web server to host model on premise for runtime inference. It provides examples to perform OCR and other functions using command line utilities like curl. The tiny Phi3-vision inference server is a simplified implementation to host model on premise. It is designed for small scale inference deployments with max serving capacity for 1-5 users. 
 
-It provides a simple REST based interface to allow utlization of the model. Inference server is based on a single Docker container that provides following key capabilities: 
+It provides a simple REST based interface to allow utilization of the model. Inference server is based on a single Docker container that provides following key capabilities: 
 
 1. Phi-3 model Inference
 2. REST APIs for integration with llm
@@ -71,10 +71,48 @@ docker ps
 http://<HOST IP ADDRESS>:5000/
 ```
 ## Usage 
-To perform OCR using the Phi3-vision model, the server has REST end point /ocr. This end point handles OCR of a single file using default prompt or custom prompt. The end point will return text of the uploaded image. Given below are few examples of calling the /ocr end point using curl. 
+To perform OCR using the Phi3-vision model, use REST end point /ocr. This end point handles OCR of a single file using default prompt or custom prompt. The end point will return text of the uploaded image. Given below are few examples of calling the /ocr end point using curl. 
 
 ```bash
 curl -F "file=@<replace_with_image_filename>.png" http://<host ip address>:5000/ocr
 ```
+
+
+
+
+# Extracting Elements from Court Case Document
+Phi3-vision provides exceptional results in performing OCR of simple documents. It is able to perform OCR, named-entity recognition and return results in JSON format. The results are accurate. Let's use an image from funds dataset to perform Zero-Shot OCR of text. Using a court case form we will extract some elements from the scanned document in JSON format.   
+
+![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/82491256.png)
+
+## Prompt to extract case name and court 
+Curl command with custom prompt to extract court case name and associated court
+```bash
+curl --form file=@82491256.png --form prompt="OCR the text of the image. Extract the text of the following fields and put it in a JSON format: 'CASE NAME','COURT'" http://<host ip address>:5001/ocr
+```
+The output of curl command is given below:
+![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/output_court_case_name_json.png)
+
+## Prompt to extract case name, date filed and entities 
+Curl command with custom prompt to extract court case name and associated court
+```bash
+curl --form file=@82491256.png --form prompt="OCR the text of the image. Extract the text as JSON of the following fields and put it in a formatted JSON: 'CASE NAME','DATE FILED', LORILLARD ENTITIES" http://192.168.100.38:5001/ocr
+```
+
+![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/output_court_case_attrib_ex2.png)
+
+While the model is able to extract the needed attributes and accurately in a JSON format, it has also appended tokens which is undesirable. These can be handled in post OCR text processing via custom code.  
+
+Let's measure performance of Phi3-vision for the same prompt using curl's built-in timing measurement feature by simply appending output to a text file using -o option
+```bash
+curl --form file=@82491256.png --form prompt="OCR the text of the image. Extract the text as JSON of the following fields and put it in a formatted JSON: 'CASE NAME','DATE FILED', LORILLARD ENTITIES" http://192.168.100.38:5001/ocr -o output.json
+```
+It takes around three seconds to perform OCR and return results in a JSON text file
+
+![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/output_court_case_attrib_ex2_time.png)
+
+The contents of the output.json file are shown below:
+
+![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/output_court_case_attrib_ex2_json.png)
 
 Contact me on freelancing web sites for assistance https://www.freelancer.com/u/hsarfraz76 or https://www.upwork.com/freelancers/~0178ad46e2372c8fe5 
