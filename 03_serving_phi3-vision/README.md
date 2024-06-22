@@ -86,7 +86,7 @@ To perform Optical Character Recognition (OCR) using the Phi3-vision model, use 
 curl -F "file=@<replace_with_image_filename>.png" http://<host ip address>:5000/ocr
 ```
 
-# Extracting Elements from Court Case Document
+# Extracting Elements from Scanned Court Case Document
 Phi3-vision's exceptional capabilities in optical character recognition (OCR) have been consistently demonstrated through its impressive performance on simple documents. Not only can it accurately perform OCR tasks, but it also excels at named-entity recognition, allowing users to pinpoint specific entities mentioned within the text. Moreover, Phi3-vision returns its findings in JSON format, making it an intuitive and user-friendly solution for data extraction.
 
 To illustrate the model's capabilities, let's put it to work on a sample document from the funds dataset. By using a court case form as our test subject, we can demonstrate how Phi3-vision can extract valuable information from a scanned document with ease. Using its advanced OCR capabilities, the tool will quickly and accurately identify the text within the image, allowing us to tap into the wealth of data contained within.
