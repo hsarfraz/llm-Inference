@@ -51,7 +51,13 @@ services:
 
 ```
 ## Deploy 
-Once the changes have been made to the [`docker-compose.yml`](./02_tiny_inference_single_model/docker-compose.yml) file to reflect your local environment. The containers can be build and deployed using below commands:
+After making the necessary updates to the [`docker-compose.yml`] (./02_tiny_inference_single_model/docker-compose.yml) file to accurately reflect your local development environment, you're now ready to build and deploy your containers. To do so, follow these steps:
+
+1: Run docker-compose build to rebuild your containers using the updated configuration.
+2: Next, execute docker-compose up -d to start your containers in detached mode, allowing them to run in the background.
+
+By following these commands, you'll have successfully deployed your containers and be ready to start using phi3-vision via REST web services.
+
 
 ```bash
 docker compose build
@@ -71,7 +77,7 @@ docker ps
 http://<HOST IP ADDRESS>:5000/
 ```
 ## Usage 
-To perform OCR using the Phi3-vision model, use REST end point /ocr. This end point handles OCR of a single file using default prompt or custom prompt. The end point will return text of the uploaded image. Given below are few examples of calling the /ocr end point using curl. 
+To perform Optical Character Recognition (OCR) using the Phi3-vision model, use REST end point /ocr. This end point handles OCR of a single file using default prompt or custom prompt. The end point will return text of the uploaded image. Given below are few examples of calling the /ocr end point using curl. 
 
 ```bash
 curl -F "file=@<replace_with_image_filename>.png" http://<host ip address>:5000/ocr
@@ -81,7 +87,11 @@ curl -F "file=@<replace_with_image_filename>.png" http://<host ip address>:5000/
 
 
 # Extracting Elements from Court Case Document
-Phi3-vision provides exceptional results in performing OCR of simple documents. It is able to perform OCR, named-entity recognition and return results in JSON format. The results are accurate. Let's use an image from funds dataset to perform Zero-Shot OCR of text. Using a court case form we will extract some elements from the scanned document in JSON format.   
+Phi3-vision's exceptional capabilities in optical character recognition (OCR) have been consistently demonstrated through its impressive performance on simple documents.Not only can it accurately perform OCR tasks, but it also excels at named-entity recognition, allowing users to pinpoint specific entities mentioned within the text. Moreover, Phi3-vision returns its findings in JSON format, making it an intuitive and user-friendly solution for data extraction.
+
+To illustrate the model's capabilities, let's put it to work on a sample document from the funds dataset. By using a court case form as our test subject, we can demonstrate how Phi3-vision can extract valuable information from a scanned document with ease. Using its advanced OCR capabilities, the tool will quickly and accurately identify the text within the image, allowing us to tap into the wealth of data contained within.
+
+As we analyze the results in JSON format, we'll gain insights into specific elements extracted from the scanned document, such as dates, names, and other relevant information. This powerful combination of OCR and named-entity recognition enables users to unlock hidden value from even the most complex documents, making Phi3-vision an indispensable tool for anyone working with large datasets
 
 ![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/82491256.png)
 
@@ -123,8 +133,10 @@ curl --form file=@82491256.png http://192.168.100.38:5000/ocr
 ```
 The results of the curl command are displayed in below image. In this case while phi3-vision model is able to accurately perform ocr of the text, it is unable to ocr vertical and slanted text, resulting in hallucinations by providing invalid results. 
 
+As depicted in the image, when presented with horizontal text, this phi3-vision model is remarkably effective at accurately recognizing and transcribing the written words. However, as we can see, its performance drastically drops off when confronted with vertical or slanted text. In these cases, rather than providing accurate results, the model succumbs to "hallucinations," generating invalid output that bears little resemblance to the original text. This limitation highlights the need for more sophisticated approaches to handle a wider range of text orientations and font styles. For instance, consider the following example:
+
 ![image](https://github.com/hsarfraz/llm-Inference/blob/main/03_serving_phi3-vision/_images/output_court_form_full_ocr.png)
 
-
+As we can see, the model has hallucinated, producing a nonsensical string that bears no relation to the original text. 
 
 Contact me on freelancing web sites for assistance https://www.freelancer.com/u/hsarfraz76 or https://www.upwork.com/freelancers/~0178ad46e2372c8fe5 
