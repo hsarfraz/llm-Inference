@@ -9,7 +9,7 @@ USER root
 # ADD EasyOCR/model/. /EasyOCR/model
 # ADD sentence_similarity_spanish_es/. /sentence_similarity_spanish_es
 
-COPY serve_phi.py /workspace/
+COPY serve_phi_fastapi.py /workspace/
 # COPY funcs.py /workspace/
 # COPY root.json /workspace/
 COPY req.txt .
@@ -23,4 +23,4 @@ COPY req.txt .
 RUN pip3 install -r req.txt
 
 #execute 
-CMD ["python3", "/workspace/serve_phi.py"]
+CMD ["python3", "/workspace/serve_phi_fastapi.py"]

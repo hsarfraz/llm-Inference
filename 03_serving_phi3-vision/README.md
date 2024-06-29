@@ -1,6 +1,6 @@
 
 # Inference using Microsoft phi3-vision model
-Microsoft Phi3 vision language model, the latest state-of-the-art AI technology for natural language processing. This model enables organizations to unlock the full potential of their unstructured data by providing insights and actionable intelligence. This containerized implementation of a Python/Flask-based web server allows you to host the Phi3 vision model on-premise, streamlining runtime inference and enabling seamless integration with your existing infrastructure.
+Microsoft Phi3 vision language model, the latest state-of-the-art AI technology for natural language processing. This model enables organizations to unlock the full potential of their unstructured data by providing insights and actionable intelligence. This containerized implementation of a Python/FastAPI async web server allows you to host the Phi3 vision model on-premise, streamlining runtime inference and enabling seamless integration with your existing infrastructure. By hosting the Phi3 Vision Language Model locally, users can ensure data security and privacy while enjoying the benefits of real-time language processing capabilities.
 
 This simplified inference server is specifically designed for small-scale deployments, supporting up to 1-5 users, making it an ideal solution for organizations looking to implement language processing capabilities without significant upfront investments. With this innovative technology, you can unlock the power of Phi3 vision and start driving business value through enhanced decision-making, improved customer engagement, and more.
 
@@ -10,6 +10,9 @@ The Phi3-vision language model inference server offers a straightforward, REST-b
 2. REST APIs for Integration: Seamlessly integrate your Phi3 vision model with other systems through a robust REST API framework, enabling a range of applications and use cases.
 3. Quantized Model Support: Take advantage of optimized performance by supporting quantized models, perfect for resource-constrained environments.
 
+## Updates
+- switched to async web server using FastAPI and uvicorn for better scalability with CUDA GPU support
+- original version using Flask to server the model with CUDA GPU support
 
 ## Deliverables
 - REST Interface to allow interaction with Phi-3 model

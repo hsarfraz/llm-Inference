@@ -2,9 +2,8 @@ torch
 torchvision
 transformers
 pillow
-flask[async]
-flask-jwt-extended
-flask-cors
+fastapi
+uvicorn
 python-dotenv
 accelerate
 bitsandbytes
