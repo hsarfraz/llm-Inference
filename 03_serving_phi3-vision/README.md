@@ -12,7 +12,7 @@ The Phi3-vision language model inference server offers a straightforward, REST-b
 
 ## Updates
 - switched to async web server using FastAPI and uvicorn for better scalability with CUDA GPU support
-- original version using Flask to server the model with CUDA GPU support
+- original version using Flask to serve the model with CUDA GPU support
 
 ## Deliverables
 - REST Interface to allow interaction with Phi-3 model
